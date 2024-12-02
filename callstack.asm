@@ -76,10 +76,7 @@ getExponent:
     ; Bitwise logic to isolate exponent
     LDY #$02
     LDA ($00), Y    ; get second-most-significant byte of the float
-    CLC             ; clear carry
-    BPL shift       ; if 8th bit is 0, jump to the bit-shift
-    SEC             ; else (bit 8 is 1), set carry
-shift:
+    ASL
     LDY #$03
     LDA ($00), Y    ; get most significant byte of the float
     ROL             ; left-shift with carry
